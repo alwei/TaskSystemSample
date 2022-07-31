@@ -110,7 +110,8 @@ void ATaskActor::TaskPrerequisites()
 	);
 	
 	// タスクBとタスクCはタスクAが完了するまでは起動しない
-	FTask TaskB = Launch(TEXT("Task Prereqs TaskB"), [] {
+	FTask TaskB = Launch(TEXT("Task Prereqs TaskB"), []
+		{
 			FPlatformProcess::Sleep(0.2f);
 			UE_LOG(LogTemp, Log, TEXT("TaskB End"));
 		}, TaskA
@@ -176,7 +177,7 @@ void ATaskActor::TaskEvent()
 	FTaskEvent Event{ TEXT("Event") };
 
 	// TaskEventをLaunchで引数の最後に渡す
-	Launch(UE_SOURCE_LOCATION, []
+	Launch(TEXT("Task Event"), []
 		{
 			UE_LOG(LogTemp, Log, TEXT("TaskEvent Completed"));
 		}, Event
